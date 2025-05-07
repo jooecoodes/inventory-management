@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../include/Utils.h"
-#include "../include/Product.h"
+#include "../include/Utils.hpp"
+#include "../include/Product.hpp"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
