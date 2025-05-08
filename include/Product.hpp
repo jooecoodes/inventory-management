@@ -12,7 +12,6 @@ class Product {
 
     public:
         Product();
-        ~Product();
         void display() const;
         std::string getID() const;
         std::string getName() const;

@@ -1,13 +1,12 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class FileManager {
     public:
-        FileManager();
-        ~FileManager();
-        void loadInventory(const std::string& filename);
-        void saveInventory(const std::string& filename) const;
-        void loadProducts(const std::string& filename);
-        void saveProducts(const std::string& filename) const;
+        static std::vector<std::string> readToInventory(const std::string& filePath);
+        static void writeToInventory(const std::string& filePath, const std::string& data);
+        static void deleteFromInventory(const std::string& filePath, const std::string& id);
+        static void updateInventory(const std::string& filePath, const std::string& id, const std::string& data);
 };

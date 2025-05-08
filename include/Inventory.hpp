@@ -1,11 +1,17 @@
 #pragma once
 
+#include "FileManager.hpp"
+#include "Product.hpp"
 #include <string>
+#include <map>
 
 class Inventory {
+    private:
+        std::string inventoryFilePath; 
+        std::map<std::string, Product> products; 
+
     public:
         Inventory();
-        ~Inventory();
         void addProduct(const std::string& id, const std::string& name, const std::string& category, int quantity, double price);
         void removeProduct(const std::string& id);
         void displayInventory() const;
