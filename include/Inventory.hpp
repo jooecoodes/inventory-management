@@ -7,7 +7,7 @@
 
 class Inventory {
     private:
-        std::string inventoryFilePath; 
+        std::string inventoryFileName; 
         std::map<std::string, Product> products; 
 
     public:

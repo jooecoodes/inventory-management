@@ -5,7 +5,7 @@
 #include <string>
 
 Inventory::Inventory() {
-    inventoryFilePath = "../data/inventory.dat";
+    inventoryFileName = "../data/inventory.dat";
 }
 
 void Inventory::addProduct(const std::string& id, const std::string& name, const std::string& category, int quantity, double price) {
@@ -17,13 +17,12 @@ void Inventory::addProduct(const std::string& id, const std::string& name, const
     product.setPrice(price);
 
     products[id] = product;
-
-    FileManager::writeToInventory(inventoryFilePath, id + "," + name + "," + category + "," + std::to_string(quantity) + "," + std::to_string(price));
+    FileManager::writeToInventory(inventoryFileName, id + "," + name + "," + category + "," + std::to_string(quantity) + "," + std::to_string(price));
 }
 
 void Inventory::removeProduct(const std::string& id) {
     products.erase(id);
-    FileManager::deleteFromInventory(inventoryFilePath, id);
+    FileManager::deleteFromInventory(inventoryFileName, id);
 }
 
 void Inventory::displayInventory() const {
@@ -47,7 +46,7 @@ void Inventory::updateProduct(const std::string& id, int quantity, double price)
             pair.second.setQuantity(quantity);
             pair.second.setPrice(price);
 
-            FileManager::updateInventory(inventoryFilePath, id, id + "," + pair.second.getName() + "," + pair.second.getCategory() + "," + std::to_string(quantity) + "," + std::to_string(price));
+            FileManager::updateInventory(inventoryFileName, id, id + "," + pair.second.getName() + "," + pair.second.getCategory() + "," + std::to_string(quantity) + "," + std::to_string(price));
         }
     }
 }

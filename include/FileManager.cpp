@@ -3,9 +3,17 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <filesystem>
 
+std::vector<std::string> FileManager::readToInventory(const std::string& fileName) {
+    namespace fs = std::filesystem;
+    
+    fs::path dataDir = "data";
+    if (!fs::exists(dataDir)) {
+        fs::create_directory(dataDir);
+    }
 
-std::vector<std::string> FileManager::readToInventory(const std::string& filePath) {
+    fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
     std::vector<std::string> inventory;
     std::string line;
@@ -23,7 +31,15 @@ std::vector<std::string> FileManager::readToInventory(const std::string& filePat
     return inventory;
 }
 
-void FileManager::writeToInventory(const std::string& filePath, const std::string& data) {
+void FileManager::writeToInventory(const std::string& fileName, const std::string& data) {
+    namespace fs = std::filesystem;
+    
+    fs::path dataDir = "data";
+    if (!fs::exists(dataDir)) {
+        fs::create_directory(dataDir);
+    }
+
+    fs::path filePath = dataDir / fileName;
     std::ofstream outFile(filePath, std::ios::app);
 
     if(outFile.is_open()) {
@@ -35,7 +51,15 @@ void FileManager::writeToInventory(const std::string& filePath, const std::strin
     outFile.close();
 }
 
-void FileManager::deleteFromInventory(const std::string& filePath, const std::string& id) {
+void FileManager::deleteFromInventory(const std::string& fileName, const std::string& id) {
+    namespace fs = std::filesystem;
+    
+    fs::path dataDir = "data";
+    if (!fs::exists(dataDir)) {
+        fs::create_directory(dataDir);
+    }
+
+    fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
     std::vector<std::string> newInventory;
     std::string line;
@@ -62,7 +86,15 @@ void FileManager::deleteFromInventory(const std::string& filePath, const std::st
     outFile.close();
 }
 
-void FileManager::updateInventory(const std::string& filePath, const std::string& id, const std::string& data) {
+void FileManager::updateInventory(const std::string& fileName, const std::string& id, const std::string& data) {
+    namespace fs = std::filesystem;
+    
+    fs::path dataDir = "data";
+    if (!fs::exists(dataDir)) {
+        fs::create_directory(dataDir);
+    }
+
+    fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
     std::vector<std::string> newInventory;
     std::string line;

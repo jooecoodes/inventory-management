@@ -4,7 +4,7 @@
 #include <iostream>
 
 InventoryApp::InventoryApp() : inventory(), consoleUI() {
-    
+
 }
 
 void InventoryApp::run() {
@@ -13,5 +13,10 @@ void InventoryApp::run() {
     inventory.addProduct("1", "Product A", "Category 1", 10, 19.99);
     inventory.addProduct("2", "Product B", "Category 2", 5, 29.99);
     inventory.addProduct("3", "Product C", "Category 3", 20, 9.99);
-
+    // inventory.displayInventory();
+    // inventory.removeProduct("2");
+    // inventory.displayInventory();
+    // inventory.searchProduct("1");
+    // inventory.updateProduct("1", 15, 17.99);
+    // inventory.displayInventory();
 }
