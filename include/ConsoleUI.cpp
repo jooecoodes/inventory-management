@@ -1,5 +1,5 @@
 #include "ConsoleUI.hpp"
-#include "ANSI.h"
+#include "ANSI.hpp"
 
 void ConsoleUI::displayMenuUI() const {
     std::cout << ANSI::colored("Welcome to the Inventory Management System!", ANSI::CYAN) << std::endl;
