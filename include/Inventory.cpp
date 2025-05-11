@@ -21,12 +21,12 @@ void Inventory::addProduct(const std::string& name, const std::string& category,
     product.setQuantity(quantity);
     product.setPrice(price);
 
-    products[randomID] = product;
+    this->products[randomID] = product;
     FileManager::writeToInventory(inventoryFileName, randomID + "," + name + "," + category + "," + std::to_string(quantity) + "," + std::to_string(price));
 }
 
 void Inventory::removeProduct(const std::string& id) {
-    products.erase(id);
+    this->products.erase(id);
     FileManager::deleteFromInventory(inventoryFileName, id);
 }
 
@@ -34,6 +34,8 @@ void Inventory::displayInventory() const {
     for (const auto& pair : products) {
         pair.second.display();
     }
+
+    std::cout << "Total Inventory Value: " << inventoryValue() << std::endl;
 }
 
 void Inventory::searchProduct(const std::string& id) const {
@@ -78,4 +80,14 @@ void Inventory::loadInventory() {
         );
 
     }
+}
+
+double Inventory::inventoryValue() const {
+    double total = 0;
+
+    for(auto& product : products) {
+        total += (product.second.getQuantity() * product.second.getPrice());
+    }
+
+    return total;
 }

@@ -8,7 +8,7 @@
 class Inventory {
     private:
         std::string inventoryFileName; 
-        std::map<std::string, Product> products; 
+        std::map<std::string, Product> products;
 
     public:
         Inventory(std::string filePath);
@@ -18,4 +18,5 @@ class Inventory {
         void searchProduct(const std::string& id) const;
         void updateProduct(const std::string& id, const std::string& name,const std::string& category, int quantity, double price);
         void loadInventory();
+        double inventoryValue() const;
 };
