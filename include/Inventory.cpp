@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-Inventory::Inventory() {
-    inventoryFileName = "../data/inventory.dat";
+Inventory::Inventory(std::string filePath) {
+    inventoryFileName = filePath;
 }
 
 void Inventory::addProduct(const std::string& name, const std::string& category, int quantity, double price) {

@@ -11,7 +11,7 @@ class Inventory {
         std::map<std::string, Product> products; 
 
     public:
-        Inventory();
+        Inventory(std::string filePath);
         void addProduct(const std::string& name, const std::string& category, int quantity, double price);
         void removeProduct(const std::string& id);
         void displayInventory() const;

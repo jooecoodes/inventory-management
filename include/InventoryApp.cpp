@@ -4,7 +4,7 @@
 #include "../include/InputHandler.hpp"
 #include <iostream>
 
-InventoryApp::InventoryApp() : inventory(), consoleUI() {
+InventoryApp::InventoryApp() : inventory("../data/inventory.dat"), consoleUI() {
 
 }
 
@@ -39,7 +39,7 @@ void InventoryApp::run() {
             }
             case 3: {
                 inventory.loadInventory();
-                
+
                 consoleUI.displayInventoryUI();
 
                 inventory.displayInventory();
