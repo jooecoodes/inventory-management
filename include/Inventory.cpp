@@ -1,9 +1,11 @@
 #include "Inventory.hpp"
 #include "FileManager.hpp"
 #include "Utils.hpp"
+#include "Product.hpp"
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 Inventory::Inventory() {
     inventoryFileName = "../data/inventory.dat";
@@ -43,13 +45,37 @@ void Inventory::searchProduct(const std::string& id) const {
     }
 }
 
-void Inventory::updateProduct(const std::string& id, int quantity, double price) {
+void Inventory::updateProduct(const std::string& id, const std::string& name,const std::string& category, int quantity, double price) {
     for(auto& pair : products) {
         if(pair.first == id) {
+            pair.second.setName(name);
+            pair.second.setCategory(category);
             pair.second.setQuantity(quantity);
             pair.second.setPrice(price);
 
             FileManager::updateInventory(inventoryFileName, id, id + "," + pair.second.getName() + "," + pair.second.getCategory() + "," + std::to_string(quantity) + "," + std::to_string(price));
         }
+    }
+}
+
+void Inventory::loadInventory() {
+    std::vector<std::string> productLines = FileManager::readToInventory(inventoryFileName);
+
+    this->products.clear();
+
+    for(const auto& product : productLines) {
+        std::vector<std::string> fields = Utils::splitStringByComma(product);
+
+        this->products.emplace(
+            fields[0],  
+            Product {
+                fields[0],       
+                fields[1],       
+                fields[2],       
+                Utils::stringToInt(fields[3]),  
+                Utils::stringToDouble(fields[4]) 
+            }
+        );
+
     }
 }

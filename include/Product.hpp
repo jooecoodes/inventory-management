@@ -12,6 +12,7 @@ class Product {
 
     public:
         Product();
+        Product(const std::string& id, const std::string& name, const std::string& category, int quantity, double price);
         void display() const;
         std::string getID() const;
         std::string getName() const;

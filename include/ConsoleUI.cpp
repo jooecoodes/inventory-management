@@ -11,7 +11,8 @@ void ConsoleUI::displayMenuUI() const {
     std::cout << ANSI::colored("6. Exit", ANSI::RED) << std::endl;
 }
 
-void ConsoleUI::displayAddProdUI() const {
+void ConsoleUI::displayAddProdUI() {
+
 }
 
 void ConsoleUI::displayRemoveProdUI() const {

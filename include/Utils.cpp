@@ -1,6 +1,8 @@
 #include "Utils.hpp"
 #include <random>
-
+#include <string>
+#include <sstream>
+#include <vector>
 
 Utils::Utils() {
     this->test = "test";
@@ -29,5 +31,30 @@ std::string Utils::generateRandomInt(int length) {
         result += charset[distribution(generator)];
     }
     
+    return result;
+}
+
+std::vector<std::string> Utils::splitStringByComma(const std::string& input) {
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(input);
+    
+    while (std::getline(tokenStream, token, ',')) {
+        tokens.push_back(token);
+    }
+    
+    return tokens;
+}
+
+double Utils::stringToDouble(const std::string str) {
+    size_t pos;
+    double result = std::stod(str, &pos);
+
+    return result;
+}
+int Utils::stringToInt(const std::string str) {
+    size_t pos;
+    int result = std::stoi(str, &pos);
+
     return result;
 }

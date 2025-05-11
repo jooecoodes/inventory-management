@@ -7,8 +7,15 @@ Product::Product() {
     this->price = 0.0;
 }
 
+Product::Product(const std::string& id, const std::string& name, const std::string& category, int quantity, double price)
+    : id(id), name(name), category(category), quantity(quantity), price(price) {
+}
+
 void Product::display() const {
+    std::cout << "Product ID: " << id << std::endl;
     std::cout << "Product Name: " << name << std::endl;
+    std::cout << "Product Category: " << category << std::endl;
+    std::cout << "Product Quantity: " << quantity << std::endl;
     std::cout << "Product Price: " << price << std::endl;
 }
 

@@ -3,7 +3,7 @@
 class ConsoleUI {
     public:
         void displayMenuUI() const;
-        void displayAddProdUI() const;
+        void displayAddProdUI();
         void displayRemoveProdUI() const;
         void displayInventoryUI() const;
         void displaySearchProdUI() const;
