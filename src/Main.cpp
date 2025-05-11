@@ -1,6 +1,4 @@
 #include <iostream>
-#include "../include/Utils.hpp"
-#include "../include/Product.hpp"
 #include "../include/InventoryApp.hpp"
 
 int main() {
