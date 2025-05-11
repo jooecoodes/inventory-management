@@ -10,3 +10,30 @@ void ConsoleUI::displayMenuUI() const {
     std::cout << ANSI::colored("5. Update Product", ANSI::GREEN) << std::endl;
     std::cout << ANSI::colored("6. Exit", ANSI::RED) << std::endl;
 }
+
+void ConsoleUI::displayAddProdUI() const {
+}
+
+void ConsoleUI::displayRemoveProdUI() const {
+    
+}
+
+void ConsoleUI::displayInventoryUI() const {
+    
+}
+
+void ConsoleUI::displaySearchProdUI() const {
+    
+}
+
+void ConsoleUI::displayUpdateProdUI() const {
+    
+}
+
+void ConsoleUI::displayExitUI() const {
+    
+}
+
+
+
+

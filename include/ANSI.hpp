@@ -12,4 +12,8 @@ namespace ANSI {
     inline std::string colored(const std::string& text, const std::string& code) {
         return code + text + RESET;
     }
+
+    inline std::string notchedTemplate(const std::string& text, const std::string& code) {
+        return CYAN + " [" + RESET + RED + "-" + RESET + CYAN + "] " + RESET + code + text  + RESET + CYAN + " [" + RESET + RED + "-" + RESET + CYAN + "] " + RESET;
+    }
 }

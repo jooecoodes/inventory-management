@@ -12,7 +12,7 @@ class Inventory {
 
     public:
         Inventory();
-        void addProduct(const std::string& id, const std::string& name, const std::string& category, int quantity, double price);
+        void addProduct(const std::string& name, const std::string& category, int quantity, double price);
         void removeProduct(const std::string& id);
         void displayInventory() const;
         void searchProduct(const std::string& id) const;

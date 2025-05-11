@@ -8,15 +8,35 @@ InventoryApp::InventoryApp() : inventory(), consoleUI() {
 }
 
 void InventoryApp::run() {
-    consoleUI.displayMenuUI();
-    
-    inventory.addProduct("1", "Product A", "Category 1", 10, 19.99);
-    inventory.addProduct("2", "Product B", "Category 2", 5, 29.99);
-    inventory.addProduct("3", "Product C", "Category 3", 20, 9.99);
-    // inventory.displayInventory();
-    // inventory.removeProduct("2");
-    // inventory.displayInventory();
-    // inventory.searchProduct("1");
-    // inventory.updateProduct("1", 15, 17.99);
-    // inventory.displayInventory();
+    int choice;
+    bool sentinel = false;
+    while(!sentinel) {
+        consoleUI.displayMenuUI();
+        std::cin >> choice;
+        switch (choice) {
+            case 1:
+                consoleUI.displayAddProdUI();
+                inventory.addProduct("Mango", "Fruits", 10, 9.2);
+                std::cout << "TEST TEST" << std::endl;
+                break;
+            case 2:
+                inventory.removeProduct("1");
+                break;
+            case 3:
+                inventory.displayInventory();
+                break;
+            case 4:
+                inventory.searchProduct("1");
+                break;
+            case 5:
+                inventory.updateProduct("1", 15, 17.99);
+                break;
+            case 6:
+                sentinel = true; 
+                break;
+            default:
+                std::cout << "Invalid choice." << std::endl;
+                break;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 #include "Inventory.hpp"
 #include "FileManager.hpp"
+#include "Utils.hpp"
 
 #include <iostream>
 #include <string>
@@ -8,16 +9,18 @@ Inventory::Inventory() {
     inventoryFileName = "../data/inventory.dat";
 }
 
-void Inventory::addProduct(const std::string& id, const std::string& name, const std::string& category, int quantity, double price) {
+void Inventory::addProduct(const std::string& name, const std::string& category, int quantity, double price) {
+    std::string randomID = Utils::generateRandomInt(5);
+
     Product product;
-    product.setID(id);
+    product.setID(randomID);
     product.setName(name);
     product.setCategory(category);
     product.setQuantity(quantity);
     product.setPrice(price);
 
-    products[id] = product;
-    FileManager::writeToInventory(inventoryFileName, id + "," + name + "," + category + "," + std::to_string(quantity) + "," + std::to_string(price));
+    products[randomID] = product;
+    FileManager::writeToInventory(inventoryFileName, randomID + "," + name + "," + category + "," + std::to_string(quantity) + "," + std::to_string(price));
 }
 
 void Inventory::removeProduct(const std::string& id) {

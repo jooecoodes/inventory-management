@@ -9,4 +9,5 @@ class Utils {
         Utils();
         ~Utils();
         void print() const;
+        static std::string generateRandomInt(int length);
 };
