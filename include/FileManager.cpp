@@ -5,13 +5,24 @@
 #include <iostream>
 #include <filesystem>
 
-std::vector<std::string> FileManager::readToInventory(const std::string& fileName) {
+namespace {
     namespace fs = std::filesystem;
-    
-    fs::path dataDir = "data";
-    if (!fs::exists(dataDir)) {
-        fs::create_directory(dataDir);
+    const fs::path dataDir = "data";
+
+    auto fileOpenModeRead = std::ios::in;
+    auto fileOpenModeAppend = std::ios::app;
+    auto fileOpenModeTruncate = std::ios::trunc;
+
+    inline void checkDirExist() {
+        if (!fs::exists(dataDir)) {
+            fs::create_directory(dataDir);
+        }
     }
+}
+
+std::vector<std::string> FileManager::readToInventory(const std::string& fileName) {
+    
+    checkDirExist();
 
     fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
@@ -32,15 +43,11 @@ std::vector<std::string> FileManager::readToInventory(const std::string& fileNam
 }
 
 void FileManager::writeToInventory(const std::string& fileName, const std::string& data) {
-    namespace fs = std::filesystem;
     
-    fs::path dataDir = "data";
-    if (!fs::exists(dataDir)) {
-        fs::create_directory(dataDir);
-    }
+    checkDirExist();
 
     fs::path filePath = dataDir / fileName;
-    std::ofstream outFile(filePath, std::ios::app);
+    std::ofstream outFile(filePath, fileOpenModeAppend);
 
     if(outFile.is_open()) {
         outFile << data << std::endl;
@@ -52,12 +59,8 @@ void FileManager::writeToInventory(const std::string& fileName, const std::strin
 }
 
 void FileManager::deleteFromInventory(const std::string& fileName, const std::string& id) {
-    namespace fs = std::filesystem;
     
-    fs::path dataDir = "data";
-    if (!fs::exists(dataDir)) {
-        fs::create_directory(dataDir);
-    }
+    checkDirExist();
 
     fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
@@ -75,7 +78,7 @@ void FileManager::deleteFromInventory(const std::string& fileName, const std::st
     }
 
     inFile.close();
-    std::ofstream outFile(filePath, std::ios::trunc);
+    std::ofstream outFile(filePath, fileOpenModeTruncate);
     if(outFile.is_open()) {
         for (const auto& product : newInventory) {
             outFile << product << std::endl;
@@ -87,12 +90,8 @@ void FileManager::deleteFromInventory(const std::string& fileName, const std::st
 }
 
 void FileManager::updateInventory(const std::string& fileName, const std::string& id, const std::string& data) {
-    namespace fs = std::filesystem;
     
-    fs::path dataDir = "data";
-    if (!fs::exists(dataDir)) {
-        fs::create_directory(dataDir);
-    }
+    checkDirExist();
 
     fs::path filePath = dataDir / fileName;
     std::ifstream inFile(filePath);
@@ -113,7 +112,7 @@ void FileManager::updateInventory(const std::string& fileName, const std::string
 
     inFile.close();
 
-    std::ofstream outFile(filePath, std::ios::trunc);
+    std::ofstream outFile(filePath, fileOpenModeTruncate);
     
     if(outFile.is_open()) {
         for (const auto& product : newInventory) {
