@@ -1,7 +1,8 @@
 #include "InputHandler.hpp"
 #include <iostream>
+#include <string>
 
-void InputHandler::addProdInputHandler(std::string& name, std::string category, int& quantity, double& price) {
+void InputHandler::addProdInputHandler(std::string& name, std::string& category, int& quantity, double& price) {
     std::cout << "Name: ";
     std::cin >> name;
 
@@ -25,7 +26,10 @@ void InputHandler::searchProdInputHandler(std::string& id) {
     std::cin >> id;
 }
 
-void InputHandler::updateProdInputHandler(std::string id, std::string& name, std::string& category, int& quantity, double& price) {
+void InputHandler::updateProdInputHandler(std::string& id, std::string& name, std::string& category, int& quantity, double& price) {
+    std::cout << "Enter the ID: ";
+    std::cin >> id;
+
     std::cout << "New Name: ";
     std::cin >> name;
 
