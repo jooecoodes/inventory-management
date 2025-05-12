@@ -16,7 +16,7 @@ namespace ANSI {
     const std::string MAGENTA = "\033[35m";
     const std::string WHITE = "\033[37m";
 
-    const std::string MAGENTA_BOLD = "\033[45;1m";
+    const std::string MAGENTA_BOLD = "\033[35;1m";
     const std::string GREEN_BOLD = "\033[32;1m";
     const std::string RED_BOLD = "\033[31;1m";
     const std::string YELLOW_BOLD = "\033[33;1m";
