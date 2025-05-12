@@ -1,4 +1,5 @@
 #include "Product.hpp"
+#include "ConsoleUI.hpp"
 
 #include <iostream>
 
@@ -12,11 +13,7 @@ Product::Product(const std::string& id, const std::string& name, const std::stri
 }
 
 void Product::display() const {
-    std::cout << "Product ID: " << id << std::endl;
-    std::cout << "Product Name: " << name << std::endl;
-    std::cout << "Product Category: " << category << std::endl;
-    std::cout << "Product Quantity: " << quantity << std::endl;
-    std::cout << "Product Price: " << price << std::endl;
+    ConsoleUI::displayProduct(this->id, this->name, this->category, this->quantity, this->price);
 }
 
 std::string Product::getID() const {
