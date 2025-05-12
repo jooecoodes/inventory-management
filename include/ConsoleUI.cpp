@@ -43,7 +43,7 @@ void ConsoleUI::displayMenuUI() const {
     std::cout << ANSI::colorize(" [2] ➤ Remove Product\n", ANSI::RED_BOLD);
     std::cout << ANSI::colorize(" [3] ➤ View Inventory\n", ANSI::BLUE_BOLD);
     std::cout << ANSI::colorize(" [4] ➤ Search Product\n", ANSI::YELLOW_BOLD);
-    std::cout << ANSI::colorize(" [5] ➤ Update Product\n", ANSI::MAGENTA_BOLD);
+    std::cout << ANSI::colorize(" [5] ➤ Update Product\n", ANSI::WHITE_BOLD);
     std::cout << ANSI::colorize(" [6] ➤ Exit\n", ANSI::WHITE_BRIGHT);
 
     separatorLine();
