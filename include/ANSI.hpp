@@ -22,6 +22,7 @@ namespace ANSI {
     const std::string YELLOW_BOLD = "\033[33;1m";
     const std::string CYAN_BOLD = "\033[36;1m";
     const std::string BLUE_BOLD = "\033[34;1m";
+    const std::string WHITE_BOLD = "\033[37;1m";
 
     const std::string CLEAR_SCREEN = "\033[2J";
     const std::string RESET_CURSOR = "\033[H";
