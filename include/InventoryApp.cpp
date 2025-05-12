@@ -39,8 +39,7 @@ void InventoryApp::run() {
             }
             case 3: {
                 inventory.loadInventory();
-
-                consoleUI.displayInventoryUI();
+                consoleUI.displayFields();
 
                 inventory.displayInventory();
                 break;
