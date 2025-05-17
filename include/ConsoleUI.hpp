@@ -11,6 +11,7 @@ class ConsoleUI {
         void displayUpdateProdUI() const;
         void displayExitUI() const;
         void displayFields();
+        void displayEnterChoiceForLoop();
 
         static void displayProduct(const std::string& id, const std::string& name,
                                 const std::string& category, int quantity, double price);

@@ -2,6 +2,7 @@
 #include "../include/InventoryApp.hpp"
 #include "../include/ConsoleUI.hpp"
 #include "../include/InputHandler.hpp"
+#include "../include/Utils.hpp"
 #include <iostream>
 
 InventoryApp::InventoryApp() : inventory("../data/inventory.dat"), consoleUI() {
@@ -10,10 +11,36 @@ InventoryApp::InventoryApp() : inventory("../data/inventory.dat"), consoleUI() {
 
 void InventoryApp::run() {
     int choice;
+    std::string stringedInputChoice;
+
     bool sentinel = false;
+
     while(!sentinel) {
         consoleUI.displayMenuUI();
-        std::cin >> choice;
+
+        Choice:
+            try {
+
+                std::getline(std::cin, stringedInputChoice);
+                if (stringedInputChoice.empty()) {
+                    std::cout << "Input cannot be empty. Please enter a valid choice." << std::endl;
+                    goto Choice;
+                }
+                if (stringedInputChoice.length() > 1) {
+                    std::cout << "Input is too long. Please enter a single digit." << std::endl;
+                    goto Choice;
+                }
+            
+                choice = Utils::stringToInt(stringedInputChoice);   
+            } catch (const std::invalid_argument& e) {
+                std::cout << "Invalid input. Please enter a number." << std::endl;
+                goto Choice;
+            } catch (const std::out_of_range& e) {
+                std::cout << "Input is out of range. Please enter a valid number." << std::endl;
+                goto Choice;
+            }
+        
+
         switch (choice) {
             case 1: {
                 std::string name, category;

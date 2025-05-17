@@ -93,6 +93,9 @@ void ConsoleUI::displayFields() {
             << ANSI::CYAN << TableFormat::divider() << ANSI::RESET << "\n";
 }
 
+void ConsoleUI::displayEnterChoiceForLoop() {
+    std::cout << ANSI::colorize(" Enter your choice: ", ANSI::CYAN_BOLD);
+}
 
 void ConsoleUI::displayProduct(const std::string& id, const std::string& name, const std::string& category, int quantity, double price) {
 
@@ -103,4 +106,6 @@ void ConsoleUI::displayProduct(const std::string& id, const std::string& name, c
             << std::setw(PRICE_WIDTH) << std::left << ("$" + std::to_string(price)) << " |\n"
             << ANSI::CYAN << TableFormat::divider() << ANSI::RESET << "\n";
 }
+
+
 

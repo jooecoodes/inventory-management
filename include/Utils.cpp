@@ -58,3 +58,11 @@ int Utils::stringToInt(const std::string str) {
 
     return result;
 }
+std::string Utils::intToString(int value) {
+    return std::to_string(value);
+}
+std::string Utils::doubleToString(double value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
