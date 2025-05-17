@@ -7,8 +7,12 @@
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
-    InventoryApp app;
-    app.run();
+    try {
+        InventoryApp app;
+        app.run();
+    } catch (const std::exception& e) {
+        std::cerr << "An error occurred: " << e.what() << std::endl;
+    }
 
     return 0;
 }
