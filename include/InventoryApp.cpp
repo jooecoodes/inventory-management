@@ -65,7 +65,6 @@ void InventoryApp::run() {
                 break;
             }
             case 3: {
-                inventory.loadInventory();
                 consoleUI.displayFields();
 
                 inventory.displayInventory();
@@ -77,8 +76,10 @@ void InventoryApp::run() {
                 consoleUI.displaySearchProdUI();
 
                 InputHandler::searchProdInputHandler(id);
+                std::cout << "Search product before" << std::endl;
 
-                inventory.searchProduct(id);
+                inventory.searchProducts(id);
+                std::cout << "Search product after" << std::endl;
                 break;
             }
             case 5: {
@@ -91,6 +92,7 @@ void InventoryApp::run() {
                 InputHandler::updateProdInputHandler(id, name, category, quantity, price);
 
                 inventory.updateProduct(id, name, category, quantity, price);
+                std::cout << "After inventory update product" << std::endl;
                 break;
             }
             case 6:

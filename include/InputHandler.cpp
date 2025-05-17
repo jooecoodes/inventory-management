@@ -6,8 +6,6 @@
 #include <limits>
 
 void InputHandler::addProdInputHandler(std::string& name, std::string& category, int& quantity, double& price) {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     std::string stringedInputQuantity, stringedInputPrice;
 
     Name:
@@ -75,8 +73,6 @@ void InputHandler::addProdInputHandler(std::string& name, std::string& category,
 }
 
 void InputHandler::removeProdInputHandler(std::string& id) {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     ID:
         std::cout << "ID: ";
         std::getline(std::cin, id);
@@ -88,24 +84,18 @@ void InputHandler::removeProdInputHandler(std::string& id) {
         std::cout << "Product with ID: " << id << " has been removed." << std::endl;
 }
 
-void InputHandler::searchProdInputHandler(std::string& id) {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    ID:
-        std::cout << "ID (for search): ";
-        std::getline(std::cin, id);
-        if (id.empty()) {
+void InputHandler::searchProdInputHandler(std::string& name) {
+    std::cout << "Name (for search): ";
+    Name:
+        std::getline(std::cin, name);
+        if (name.empty()) {
             std::cout << "ID cannot be empty. Please enter a valid ID." << std::endl;
-            goto ID;
+            goto Name;
         }
-        std::cout << "Product removed successfully!" << std::endl;
-        std::cout << "Product with ID: " << id << " has been removed." << std::endl;
-
     
 }
 
 void InputHandler::updateProdInputHandler(std::string& id, std::string& name, std::string& category, int& quantity, double& price) {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::string stringedInputQuantity, stringedInputPrice;
 
     ID: 
@@ -127,7 +117,7 @@ void InputHandler::updateProdInputHandler(std::string& id, std::string& name, st
         }
     Category:
         std::cout << "New Category: ";
-        std::cin >> category;
+        std::getline(std::cin, category);
 
         if (category.empty()) {
             std::cout << "Category cannot be empty. Please enter a valid category." << std::endl;
