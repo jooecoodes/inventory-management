@@ -96,9 +96,6 @@ void InventoryApp::run() {
             case 6:
                 sentinel = true; 
                 break;
-            default:
-                std::cout << "Invalid choice." << std::endl;
-                break;
         }
     }
 }
