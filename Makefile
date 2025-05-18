@@ -28,6 +28,7 @@ ${BUILD_DIR}/ErrorConsoleUI.o: src/ui/ErrorConsoleUI.cpp | ${BUILD_DIR}
 ${BUILD_DIR}/InputConsoleUI.o: src/ui/InputConsoleUI.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
 
+
 ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}
 
