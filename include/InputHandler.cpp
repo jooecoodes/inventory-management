@@ -1,169 +1,166 @@
 #include "InputHandler.hpp"
 #include "Utils.hpp"
+#include "ErrorConsoleUI.hpp"
+#include "InputConsoleUI.hpp"
 #include <iostream>
 #include <string>
-
 #include <limits>
 
 void InputHandler::addProdInputHandler(std::string& name, std::string& category, int& quantity, double& price) {
     std::string stringedInputQuantity, stringedInputPrice;
 
     Name:
-        std::cout << "Name: ";
-        std::getline(std::cin,name);
-
+        InputConsoleUI::displayNamePrompt();
+        std::getline(std::cin, name);
         if (name.empty()) {
-            std::cout << "Name cannot be empty. Please enter a valid name." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("Name");
             goto Name;
         }
 
     Category:
-        std::cout << "Category: ";
+        InputConsoleUI::displayCategoryPrompt();
         std::getline(std::cin, category);
         if (category.empty()) {
-            std::cout << "Category cannot be empty. Please enter a valid category." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("Category");
             goto Category;
         }
 
     Quantity:
         try {
-            std::cout << "Quantity: ";
+            InputConsoleUI::displayQuantityPrompt();
             std::getline(std::cin, stringedInputQuantity);
         
             if (stringedInputQuantity.empty()) {
-                std::cout << "Quantity cannot be empty. Please enter a valid quantity." << std::endl;
+                ErrorConsoleUI::displayEmptyFieldError("Quantity");
                 goto Quantity;
             }
             quantity = Utils::stringToInt(stringedInputQuantity);
             if (quantity < 0) {
-                std::cout << "Quantity cannot be negative. Please enter a valid quantity." << std::endl;
+                ErrorConsoleUI::displayNegativeValueError("Quantity");
                 goto Quantity;
             }
         } catch (const std::invalid_argument& e) {
-            std::cout << "Invalid input for quantity. Please enter a valid integer." << std::endl;
+            ErrorConsoleUI::displayInputError("quantity (must be integer)");
             goto Quantity;
         } catch (const std::out_of_range& e) {
-            std::cout << "Quantity is out of range. Please enter a valid integer." << std::endl;
+            ErrorConsoleUI::displayError("Quantity value is too large", ErrorLevel::ERROR);
             goto Quantity;
         }
 
-
     Price:
         try {
-            std::cout << "Price: ";
+            InputConsoleUI::displayPricePrompt();
             std::getline(std::cin, stringedInputPrice);
             if (stringedInputPrice.empty()) {
-                std::cout << "Price cannot be empty. Please enter a valid price." << std::endl;
+                ErrorConsoleUI::displayEmptyFieldError("Price");
                 goto Price;
             }
             price = Utils::stringToDouble(stringedInputPrice);
             if (price < 0) {
-                std::cout << "Price cannot be negative. Please enter a valid price." << std::endl;
+                ErrorConsoleUI::displayNegativeValueError("Price");
                 goto Price;
             }
         } catch (const std::invalid_argument& e) {
-            std::cout << "Invalid input for price. Please enter a valid number." << std::endl;
+            ErrorConsoleUI::displayInputError("price (must be number)");
             goto Price;
         } catch (const std::out_of_range& e) {
-            std::cout << "Price is out of range. Please enter a valid price." << std::endl;
+            ErrorConsoleUI::displayError("Price value is too large", ErrorLevel::ERROR);
             goto Price;
         }
 
-    std::cout << "Product added successfully!" << std::endl;
+    ErrorConsoleUI::displaySuccessMessage("Product added successfully!");
 }
 
 void InputHandler::removeProdInputHandler(std::string& id) {
     ID:
-        std::cout << "ID: ";
+        InputConsoleUI::displayIDPrompt();
         std::getline(std::cin, id);
         if (id.empty()) {
-            std::cout << "ID cannot be empty. Please enter a valid ID." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("ID");
             goto ID;
         }
-        std::cout << "Product removed successfully!" << std::endl;
-        std::cout << "Product with ID: " << id << " has been removed." << std::endl;
+    ErrorConsoleUI::displaySuccessMessage("Product removed successfully!");
+    std::cout << "Product with ID: " << id << " has been removed." << std::endl;
 }
 
 void InputHandler::searchProdInputHandler(std::string& name) {
-    std::cout << "Name (for search): ";
+    InputConsoleUI::displaySearchPrompt();
     Name:
         std::getline(std::cin, name);
         if (name.empty()) {
-            std::cout << "ID cannot be empty. Please enter a valid ID." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("Search term");
             goto Name;
         }
-    
 }
 
 void InputHandler::updateProdInputHandler(std::string& id, std::string& name, std::string& category, int& quantity, double& price) {
     std::string stringedInputQuantity, stringedInputPrice;
 
     ID: 
-        std::cout << "Enter the ID: ";
+        InputConsoleUI::displayGenericPrompt("Enter the ID");
         std::getline(std::cin, id);
-        
         if (id.empty()) {
-            std::cout << "Name cannot be empty. Please enter a valid name." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("ID");
             goto ID;
         }
 
     Name:
-        std::cout << "New Name: ";
+        InputConsoleUI::displayGenericPrompt("New Name");
         std::getline(std::cin, name);
-    
         if (name.empty()) {
-            std::cout << "Name cannot be empty. Please enter a valid name." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("Name");
             goto Name;
         }
-    Category:
-        std::cout << "New Category: ";
-        std::getline(std::cin, category);
 
+    Category:
+        InputConsoleUI::displayGenericPrompt("New Category");
+        std::getline(std::cin, category);
         if (category.empty()) {
-            std::cout << "Category cannot be empty. Please enter a valid category." << std::endl;
+            ErrorConsoleUI::displayEmptyFieldError("Category");
             goto Category;
         }
 
     Quantity:
         try {
-            std::cout << "New Quantity: ";
+            InputConsoleUI::displayGenericPrompt("New Quantity");
             std::getline(std::cin, stringedInputQuantity);
-
             if (stringedInputQuantity.empty()) {
-                std::cout << "Quantity cannot be empty. Please enter a valid quantity." << std::endl;
+                ErrorConsoleUI::displayEmptyFieldError("Quantity");
                 goto Quantity;
             }
             quantity = Utils::stringToInt(stringedInputQuantity);
             if (quantity < 0) {
-                std::cout << "Quantity cannot be negative. Please enter a valid quantity." << std::endl;
+                ErrorConsoleUI::displayNegativeValueError("Quantity");
                 goto Quantity;
             }
         } catch (const std::invalid_argument& e) {
-            std::cout << "Invalid input for quantity. Please enter a valid integer." << std::endl;
+            ErrorConsoleUI::displayInputError("quantity (must be integer)");
             goto Quantity;
         } catch (const std::out_of_range& e) {
-            std::cout << "Quantity is out of range. Please enter a valid integer." << std::endl;
+            ErrorConsoleUI::displayError("Quantity value is too large", ErrorLevel::ERROR);
             goto Quantity;
         }
 
     Price:
-        std::cout << "New Price: ";
-        std::getline(std::cin, stringedInputPrice);
         try {
+            InputConsoleUI::displayGenericPrompt("New Price");
+            std::getline(std::cin, stringedInputPrice);
             if (stringedInputPrice.empty()) {
-                std::cout << "Price cannot be empty. Please enter a valid price." << std::endl;
+                ErrorConsoleUI::displayEmptyFieldError("Price");
                 goto Price;
             }
             price = Utils::stringToDouble(stringedInputPrice);
             if (price < 0) {
-                std::cout << "Price cannot be negative. Please enter a valid price." << std::endl;
+                ErrorConsoleUI::displayNegativeValueError("Price");
                 goto Price;
             }
         } catch (const std::invalid_argument& e) {
-            std::cout << "Invalid input for price. Please enter a valid number." << std::endl;
+            ErrorConsoleUI::displayInputError("price (must be number)");
             goto Price;
         } catch (const std::out_of_range& e) {
-            std::cout << "Price is out of range. Please enter a valid price." << std::endl;
+            ErrorConsoleUI::displayError("Price value is too large", ErrorLevel::ERROR);
             goto Price;
         }
+
+    ErrorConsoleUI::displaySuccessMessage("Product updated successfully!");
 }
