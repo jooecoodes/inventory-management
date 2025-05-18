@@ -3,7 +3,11 @@
 #include "../../include/ui/ConsoleUI.hpp"
 #include "../../include/utils/InputHandler.hpp"
 #include "../../include/utils/Utils.hpp"
+#include "../../include/ui/ErrorConsoleUI.hpp"
 #include <iostream>
+#include <stdexcept>
+#include <string>
+#include <algorithm>
 
 InventoryApp::InventoryApp() : inventory("../data/inventory.dat"), consoleUI() {
 
@@ -20,23 +24,34 @@ void InventoryApp::run() {
 
         Choice:
             try {
-
                 std::getline(std::cin, stringedInputChoice);
+                
                 if (stringedInputChoice.empty()) {
-                    std::cout << "Input cannot be empty. Please enter a valid choice." << std::endl;
+                    ErrorConsoleUI::displayEmptyFieldError("Menu choice");
                     goto Choice;
                 }
+                
                 if (stringedInputChoice.length() > 1) {
-                    std::cout << "Input is too long. Please enter a single digit." << std::endl;
+                    ErrorConsoleUI::displayError("Please enter just one digit (1-6)", 
+                                            ErrorLevel::WARNING);
                     goto Choice;
                 }
-            
-                choice = Utils::stringToInt(stringedInputChoice);   
+                
+                if (!isdigit(stringedInputChoice[0])) {
+                    throw std::invalid_argument("Not a valid number");
+                }
+                
+                choice = Utils::stringToInt(stringedInputChoice);
+                if (choice < 1 || choice > 6) {
+                    throw std::out_of_range("Menu option must be 1-6");
+                }
+                
             } catch (const std::invalid_argument& e) {
-                std::cout << "Invalid input. Please enter a number." << std::endl;
+                ErrorConsoleUI::displayInputError("menu choice (must be integer)");
                 goto Choice;
             } catch (const std::out_of_range& e) {
-                std::cout << "Input is out of range. Please enter a valid number." << std::endl;
+                ErrorConsoleUI::displayError("Invalid option (must be 1-6)", 
+                                        ErrorLevel::ERROR);
                 goto Choice;
             }
         
