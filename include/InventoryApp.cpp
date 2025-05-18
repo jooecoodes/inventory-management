@@ -76,10 +76,8 @@ void InventoryApp::run() {
                 consoleUI.displaySearchProdUI();
 
                 InputHandler::searchProdInputHandler(id);
-                std::cout << "Search product before" << std::endl;
 
                 inventory.searchProducts(id);
-                std::cout << "Search product after" << std::endl;
                 break;
             }
             case 5: {
@@ -87,15 +85,15 @@ void InventoryApp::run() {
                 int quantity;
                 double price;
 
-                consoleUI.displaySearchProdUI();
+                consoleUI.displayUpdateProdUI();
 
                 InputHandler::updateProdInputHandler(id, name, category, quantity, price);
 
                 inventory.updateProduct(id, name, category, quantity, price);
-                std::cout << "After inventory update product" << std::endl;
                 break;
             }
             case 6:
+                consoleUI.displayExitUI();
                 sentinel = true; 
                 break;
         }
