@@ -52,34 +52,34 @@ void ConsoleUI::displayMenuUI() const {
 
 void ConsoleUI::displayAddProdUI() {
     std::cout << ANSI::notchedTemplate("Add New Product", ANSI::GREEN_BOLD) << "\n";
-    slowPrint("Please enter the details of the new product...\n", 15);
+    slowPrint(ANSI::GREEN_BOLD + "Please enter the details of the new product..." + ANSI::RESET + "\n", 15);
 }
 
 void ConsoleUI::displayRemoveProdUI() const {
     std::cout << ANSI::notchedTemplate("Remove Product", ANSI::RED_BOLD) << "\n";
-    slowPrint("Enter the product ID or name to remove...\n", 15);
+    slowPrint(ANSI::RED_BOLD + "Enter the product ID or name to remove..." + ANSI::RESET + "\n", 15);
 }
 
 void ConsoleUI::displayInventoryUI() const {
     std::cout << ANSI::notchedTemplate("Inventory List", ANSI::BLUE_BOLD) << "\n";
-    slowPrint("Loading inventory...\n", 15);
+    slowPrint(ANSI::BLUE_BOLD + "Loading inventory..." + ANSI::RESET + "\n", 15);
 
 }
 
 void ConsoleUI::displaySearchProdUI() const {
     std::cout << ANSI::notchedTemplate("Search Product", ANSI::YELLOW_BOLD) << "\n";
-    slowPrint("Enter the product keyword to search...\n", 15);
+    slowPrint(ANSI::YELLOW_BOLD + "Enter the product keyword to search..." + ANSI::RESET + "\n", 15);
 }
 
 void ConsoleUI::displayUpdateProdUI() const {
     std::cout << ANSI::notchedTemplate("Update Product", ANSI::MAGENTA_BOLD) << "\n";
-    slowPrint("Enter the product ID and new information...\n", 15);
+    slowPrint(ANSI::MAGENTA_BOLD + "Enter the product ID and new information..." + ANSI::RESET + "\n", 15);
 }
 
 void ConsoleUI::displayExitUI() const {
     std::cout << "\n";
     slowPrint(ANSI::RED_BOLD + "Exiting the system...\n" + ANSI::RESET, 25);
-    slowPrint(ANSI::CYAN + "Thank you for using the Inventory Manager.\n" + ANSI::RESET, 25);
+    slowPrint(ANSI::CYAN + "Thank you for using our program :)\n" + ANSI::RESET, 25);
 }
 
 void ConsoleUI::displayFields() {
