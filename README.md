@@ -6,7 +6,7 @@
 
 ![Flowchart](flow/flow.svg)
 
-A Console-based inventory management application with file-based database (.dat). 
+A Console-based inventory management application with file-based database (.dat). A project for finals in the university.
 # Features
 - **Product Management**
   - Add new products with details (ID, Name, Category, Quantity, Price)
