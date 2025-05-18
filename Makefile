@@ -9,23 +9,23 @@ ${TARGET}: ${OBJS}
 	${CC} ${OBJS} -o $@
 ${BUILD_DIR}/Main.o: src/Main.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/Utils.o: include/Utils.cpp | ${BUILD_DIR}
+${BUILD_DIR}/Utils.o: src/utils/Utils.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/Product.o: include/Product.cpp | ${BUILD_DIR}
+${BUILD_DIR}/Product.o: src/core/Product.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/Inventory.o: include/Inventory.cpp | ${BUILD_DIR}
+${BUILD_DIR}/Inventory.o: src/core/Inventory.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/FileManager.o: include/FileManager.cpp | ${BUILD_DIR}
+${BUILD_DIR}/FileManager.o: src/utils/FileManager.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/InventoryApp.o: include/InventoryApp.cpp | ${BUILD_DIR}
+${BUILD_DIR}/InventoryApp.o: src/core/InventoryApp.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/ConsoleUI.o: include/ConsoleUI.cpp | ${BUILD_DIR}
+${BUILD_DIR}/ConsoleUI.o: src/ui/ConsoleUI.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/InputHandler.o: include/InputHandler.cpp | ${BUILD_DIR}
+${BUILD_DIR}/InputHandler.o: src/utils/InputHandler.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/ErrorConsoleUI.o: include/ErrorConsoleUI.cpp | ${BUILD_DIR}
+${BUILD_DIR}/ErrorConsoleUI.o: src/ui/ErrorConsoleUI.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
-${BUILD_DIR}/InputConsoleUI.o: include/InputConsoleUI.cpp | ${BUILD_DIR}
+${BUILD_DIR}/InputConsoleUI.o: src/ui/InputConsoleUI.cpp | ${BUILD_DIR}
 	${CC} -c $< -o $@
 
 ${BUILD_DIR}:
