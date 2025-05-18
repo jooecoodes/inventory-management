@@ -1,7 +1,7 @@
-#include "InputHandler.hpp"
-#include "Utils.hpp"
-#include "ErrorConsoleUI.hpp"
-#include "InputConsoleUI.hpp"
+#include "../../include/utils/InputHandler.hpp"
+#include "../../include/utils/Utils.hpp"
+#include "../../include/ui/ErrorConsoleUI.hpp"
+#include "../../include/ui/InputConsoleUI.hpp"
 #include <iostream>
 #include <string>
 #include <limits>

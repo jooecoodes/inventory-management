@@ -1,5 +1,5 @@
-#include "Product.hpp"
-#include "ConsoleUI.hpp"
+#include "../../include/core/Product.hpp"
+#include "../../include/ui/ConsoleUI.hpp"
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
-#include "ConsoleUI.hpp"
-#include "ANSI.hpp"
+#include "../../include/ui/ConsoleUI.hpp"
+#include "../../include/ui/ANSI.hpp"
 #include <thread>
 #include <chrono>
 

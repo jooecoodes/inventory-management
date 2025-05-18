@@ -1,6 +1,6 @@
 #pragma once
 #include "Inventory.hpp"
-#include "ConsoleUI.hpp"
+#include "../ui/ConsoleUI.hpp"
 
 class InventoryApp {
     private:

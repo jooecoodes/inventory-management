@@ -1,5 +1,5 @@
-#include "FileManager.hpp"
-#include "ErrorConsoleUI.hpp"
+#include "../../include/utils/FileManager.hpp"
+#include "../../include/ui/ErrorConsoleUI.hpp"
 #include <string>
 #include <fstream>
 #include <filesystem>

@@ -1,7 +1,7 @@
-#include "Inventory.hpp"
-#include "FileManager.hpp"
-#include "Utils.hpp"
-#include "Product.hpp"
+#include "../../include/core/Inventory.hpp"
+#include "../../include/utils/FileManager.hpp"
+#include "../../include/utils/Utils.hpp"
+#include "../../include/core/Product.hpp"
 
 #include <iostream>
 #include <string>

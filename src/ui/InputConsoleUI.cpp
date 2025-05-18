@@ -1,5 +1,5 @@
-#include "InputConsoleUI.hpp"
-#include "ANSI.hpp"
+#include "../../include/ui/InputConsoleUI.hpp"
+#include "../../include/ui/ANSI.hpp"
 #include <iostream>
 
 void InputConsoleUI::displayNamePrompt() {

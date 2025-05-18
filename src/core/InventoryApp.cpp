@@ -1,8 +1,8 @@
-#include "../include/Inventory.hpp"
-#include "../include/InventoryApp.hpp"
-#include "../include/ConsoleUI.hpp"
-#include "../include/InputHandler.hpp"
-#include "../include/Utils.hpp"
+#include "../../include/core/Inventory.hpp"
+#include "../../include/core/InventoryApp.hpp"
+#include "../../include/ui/ConsoleUI.hpp"
+#include "../../include/utils/InputHandler.hpp"
+#include "../../include/utils/Utils.hpp"
 #include <iostream>
 
 InventoryApp::InventoryApp() : inventory("../data/inventory.dat"), consoleUI() {

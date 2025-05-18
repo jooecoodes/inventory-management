@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 
-#include "../include/InventoryApp.hpp"
+#include "../include/core/InventoryApp.hpp"
 
 
 int main() {

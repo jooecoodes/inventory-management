@@ -1,5 +1,5 @@
-#include "ErrorConsoleUI.hpp"
-#include "ANSI.hpp"
+#include "../../include/ui/ErrorConsoleUI.hpp"
+#include "../../include/ui/ANSI.hpp"
 
 #define ERROR_SYMBOL   "✖"
 #define WARNING_SYMBOL "⚠"
