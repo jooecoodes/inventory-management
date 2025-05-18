@@ -40,13 +40,6 @@ void Inventory::displayInventory() {
 }
 
 void Inventory::searchProducts(const std::string& name) {
-    loadInventory();
-    // for(const auto& pair : products) {
-    //     if(pair.first == id) {
-    //         pair.second.display();
-    //         return;
-    //     }
-    // }
 
     std::vector<std::string> productLines = FileManager::readToInventory(inventoryFileName);
     std::map<std::string, Product> searchedProducts;
@@ -85,8 +78,6 @@ void Inventory::updateProduct(const std::string& id, const std::string& name,con
             pair.second.setPrice(price);
 
             FileManager::updateInventory(inventoryFileName, id, id + "," + pair.second.getName() + "," + pair.second.getCategory() + "," + std::to_string(quantity) + "," + std::to_string(price));
-
-            std::cout << "After File Manager inventory update prod" << std::endl;
         }
     }
 }
