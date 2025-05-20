@@ -90,9 +90,8 @@ void InventoryApp::run() {
 
                 consoleUI.displaySearchProdUI();
 
-                InputHandler::searchProdInputHandler(id);
+                InputHandler::searchProdInputHandler(inventory);
 
-                inventory.searchProducts(id);
                 break;
             }
             case 5: {
@@ -102,9 +101,8 @@ void InventoryApp::run() {
 
                 consoleUI.displayUpdateProdUI();
 
-                InputHandler::updateProdInputHandler(id, name, category, quantity, price);
+                InputHandler::updateProdInputHandler(id, name, category, quantity, price, inventory);
 
-                inventory.updateProduct(id, name, category, quantity, price);
                 break;
             }
             case 6:
