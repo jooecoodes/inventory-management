@@ -106,7 +106,7 @@ void Inventory::updateProduct(const std::string& id, const std::string& name,con
 
 void Inventory::updateStock(const std::string& id, int quantityChange) {
     loadInventory();
-    // Find the product in the map
+    
     auto it = products.find(id);
     if (it == products.end()) {
         ErrorConsoleUI::displayError("Product not found with ID: " + id, ErrorLevel::ERROR);
@@ -117,7 +117,6 @@ void Inventory::updateStock(const std::string& id, int quantityChange) {
     int currentQuantity = product.getQuantity();
     int newQuantity = currentQuantity + quantityChange;
 
-    // Validate stock for stock-out operation
     if (quantityChange < 0 && newQuantity < 0) {
         ErrorConsoleUI::displayError("Insufficient stock for product: " + product.getName() +
                            ". Current stock: " + std::to_string(currentQuantity) + 
@@ -126,16 +125,13 @@ void Inventory::updateStock(const std::string& id, int quantityChange) {
         return;
     }
 
-    // Update the quantity
     product.setQuantity(newQuantity);
     
-    // Debug output
     std::cout << "Updating " << product.getName() 
               << " from " << currentQuantity 
               << " to " << newQuantity 
               << " (change: " << quantityChange << ")" << std::endl;
 
-    // Update the file
     FileManager::updateInventory(inventoryFileName, id, 
         id + "," + product.getName() + "," + product.getCategory() + "," + 
         std::to_string(newQuantity) + "," + std::to_string(product.getPrice()));
