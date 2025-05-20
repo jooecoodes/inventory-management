@@ -9,7 +9,8 @@ class InputConsoleUI {
         static void displayQuantityPrompt();
         static void displayPricePrompt();
         static void displayIDPrompt();
-        static void displaySearchPrompt();
+        static void displaySearchPromptName();
+        static void displaySearchPromptID();
 
         static void displayGenericPrompt(const std::string& fieldName);
 };

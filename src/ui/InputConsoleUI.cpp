@@ -22,8 +22,12 @@ void InputConsoleUI::displayIDPrompt() {
     std::cout << ANSI::CYAN << "ID: " << ANSI::RESET;
 }
 
-void InputConsoleUI::displaySearchPrompt() {
-    std::cout << ANSI::CYAN << "Search term: " << ANSI::RESET;
+void InputConsoleUI::displaySearchPromptName() {
+    std::cout << ANSI::CYAN << "Search by Name: " << ANSI::RESET;
+}
+
+void InputConsoleUI::displaySearchPromptID() {
+    std::cout << ANSI::CYAN << "Search by ID: " << ANSI::RESET;
 }
 
 void InputConsoleUI::displayGenericPrompt(const std::string& fieldName) {
