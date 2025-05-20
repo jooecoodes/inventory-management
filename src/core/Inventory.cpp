@@ -2,6 +2,7 @@
 #include "../../include/utils/FileManager.hpp"
 #include "../../include/utils/Utils.hpp"
 #include "../../include/core/Product.hpp"
+#include "../../include/ui/ErrorConsoleUI.hpp"
 
 #include <iostream>
 #include <string>
@@ -39,7 +40,7 @@ void Inventory::displayInventory() {
     std::cout << "Total Inventory Value: " << inventoryValue() << std::endl;
 }
 
-void Inventory::searchProducts(const std::string& name) {
+void Inventory::searchProductByName(const std::string& name) {
 
     std::vector<std::string> productLines = FileManager::readToInventory(inventoryFileName);
     std::map<std::string, Product> searchedProducts;
@@ -63,13 +64,30 @@ void Inventory::searchProducts(const std::string& name) {
 
     for (const auto& searchedPair : searchedProducts) {
         searchedPair.second.display();
+        return;
     }
+
+    ErrorConsoleUI::displayError("Product not found with the name: " + name, ErrorLevel::ERROR);
+
+}
+
+void Inventory::searchProductByID(const std::string& id) {
+    loadInventory();
+
+    for(const auto& pair : products) {
+        if(pair.first == id) {
+            pair.second.display();
+            return;
+        }
+    }
+
+    ErrorConsoleUI::displayError("Product not found with ID: " + id, ErrorLevel::ERROR);
 
 }
 
 void Inventory::updateProduct(const std::string& id, const std::string& name,const std::string& category, int quantity, double price) {
     loadInventory();
-    std::cout << "Update Product called" << std::endl;
+
     for(auto& pair : products) {
         if(pair.first == id) {
             pair.second.setName(name);
@@ -78,8 +96,49 @@ void Inventory::updateProduct(const std::string& id, const std::string& name,con
             pair.second.setPrice(price);
 
             FileManager::updateInventory(inventoryFileName, id, id + "," + pair.second.getName() + "," + pair.second.getCategory() + "," + std::to_string(quantity) + "," + std::to_string(price));
+            ErrorConsoleUI::displaySuccessMessage("Product updated successfully!");
+            return;
         }
     }
+
+    ErrorConsoleUI::displayError("Product not found with ID: " + id, ErrorLevel::ERROR);
+}
+
+void Inventory::updateStock(const std::string& id, int quantityChange) {
+    loadInventory();
+    // Find the product in the map
+    auto it = products.find(id);
+    if (it == products.end()) {
+        ErrorConsoleUI::displayError("Product not found with ID: " + id, ErrorLevel::ERROR);
+        return;
+    }
+
+    Product& product = it->second;
+    int currentQuantity = product.getQuantity();
+    int newQuantity = currentQuantity + quantityChange;
+
+    // Validate stock for stock-out operation
+    if (quantityChange < 0 && newQuantity < 0) {
+        ErrorConsoleUI::displayError("Insufficient stock for product: " + product.getName() +
+                           ". Current stock: " + std::to_string(currentQuantity) + 
+                           ", attempted to deduct: " + std::to_string(-quantityChange), 
+                           ErrorLevel::ERROR);
+        return;
+    }
+
+    // Update the quantity
+    product.setQuantity(newQuantity);
+    
+    // Debug output
+    std::cout << "Updating " << product.getName() 
+              << " from " << currentQuantity 
+              << " to " << newQuantity 
+              << " (change: " << quantityChange << ")" << std::endl;
+
+    // Update the file
+    FileManager::updateInventory(inventoryFileName, id, 
+        id + "," + product.getName() + "," + product.getCategory() + "," + 
+        std::to_string(newQuantity) + "," + std::to_string(product.getPrice()));
 }
 
 void Inventory::loadInventory() {

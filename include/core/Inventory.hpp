@@ -15,8 +15,10 @@ class Inventory {
         void addProduct(const std::string& name, const std::string& category, int quantity, double price);
         void removeProduct(const std::string& id);
         void displayInventory();
-        void searchProducts(const std::string& name);
+        void searchProductByName(const std::string& name);
+        void searchProductByID(const std::string& id);
         void updateProduct(const std::string& id, const std::string& name,const std::string& category, int quantity, double price);
+        void updateStock(const std::string& id, int quantityChange);
         void loadInventory();
         double inventoryValue() const;
 };
