@@ -51,8 +51,39 @@ Create the ```data``` folder in the root directory, and then create a file insid
 data/inventory.dat
 ```
 ## Running
+First create the ```build``` directory.
 ```bash
-./build/Main
+mkdir build
+```
+### With make
+```bash
+make
+```
+And then run the ```.exe``` file.
+```bash
+build/Main.exe
+```
+### Without make
+Generate the ```.o``` or ```object``` files.
+```
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/Main.cpp -o build/Main.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/utils/Utils.cpp -o build/Utils.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/core/Product.cpp -o build/Product.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/core/Inventory.cpp -o build/Inventory.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/utils/FileManager.cpp -o build/FileManager.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/core/InventoryApp.cpp -o build/InventoryApp.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/ui/ConsoleUI.cpp -o build/ConsoleUI.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/utils/InputHandler.cpp -o build/InputHandler.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/ui/ErrorConsoleUI.cpp -o build/ErrorConsoleUI.o
+g++ -std=c++20 -Wall -Wextra -pedantic -c src/ui/InputConsoleUI.cpp -o build/InputConsoleUI.o
+```
+Link them together.
+```bash
+g++ -std=c++20 -Wall -Wextra -pedantic build/Main.o build/Utils.o build/Product.o build/Inventory.o build/FileManager.o build/InventoryApp.o build/ConsoleUI.o build/InputHandler.o build/ErrorConsoleUI.o build/InputConsoleUI.o -o build/Main.exe
+```
+And finally, run the ```.exe``` file.
+```bash
+build/Main.exe
 ```
 # Contributing
 1. Fork the repository
