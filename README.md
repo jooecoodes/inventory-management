@@ -55,7 +55,7 @@ First create the ```build``` directory.
 ```bash
 mkdir build
 ```
-### With make
+### With Make
 ```bash
 make
 ```
@@ -63,7 +63,7 @@ And then run the ```.exe``` file.
 ```bash
 build/Main.exe
 ```
-### Without make
+### Without Make
 Generate the ```.o``` or ```object``` files.
 ```
 g++ -std=c++20 -Wall -Wextra -pedantic -c src/Main.cpp -o build/Main.o
